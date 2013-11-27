@@ -15,11 +15,15 @@ These are Phonegap plugins that expose the same JS API as Twilio Client for web 
 
 # iOS
 
-- After installing the Twilio Client plugin, you will need to download and install the Twilio Client SDK for iOS - follow the directions provided after plugman finishes.
+- After installing the Twilio Client plugin, you will need to download and install the Twilio Client SDK for iOS.
+- Add the Twilio Client static libraries (the .a files in the Libraries folder) to your Xcode project.
+- Add the Twilio Client headers files (the .h files in the Headers folder) to your Xcode project.
+- Add -ObjC -all_load to "Other Linker Flags" in your target’s Build Setting.
 
 # Android
 
-- After installing the Twilio Client plugin, you will need to download and install the Twilio Client SDK for Android - follow the directions provided after plugman finishes.
+- After installing the Twilio Client plugin, you will need to download and install the Twilio Client SDK for Android.
+- Add the Twilio Client Java libraries (everything in the libs folder) to your project's libs folder - (platforms/android/libs)
 
 ## Additional Features
 

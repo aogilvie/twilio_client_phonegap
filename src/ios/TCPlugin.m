@@ -41,8 +41,8 @@
 }
 
 -(void)device:(TCDevice *)device didReceiveIncomingConnection:(TCConnection *)connection {
-    self.connection = connection;    
-    [self javascriptCallback:@"onincoming"];
+    self.connection = connection;
+    [self javascriptCallback:@"onincoming" withArguments:connection.parameters];
 }
 
 -(void)device:(TCDevice *)device didReceivePresenceUpdate:(TCPresenceEvent *)presenceEvent {
@@ -198,19 +198,22 @@
     }
     
     NSString *alertBody = [command.arguments objectAtIndex:0];
+//    NSDate *alertTime = [[NSDate date]
+//                         dateByAddingTimeInterval:5];
     
-    NSString *ringSound = @"incoming.wav";
-    if([command.arguments count] == 2) {
-        ringSound = [command.arguments objectAtIndex:1];
-    }
+    NSString *ringSound = @"incoming.mp3";
+//    if([command.arguments count] == 2) {
+//        ringSound = [command.arguments objectAtIndex:1];
+//    }
     NSLog(@"alertBody: %@",alertBody);
     NSLog(@"ringSound: %@",ringSound);
-
+    
     _ringNotification = [[UILocalNotification alloc] init];
+    _ringNotification.fireDate = nil;
+    _ringNotification.timeZone = [NSTimeZone defaultTimeZone];
     _ringNotification.alertBody = alertBody;
     _ringNotification.alertAction = @"Answer";
     _ringNotification.soundName = ringSound;
-    _ringNotification.fireDate = [NSDate date];
     [[UIApplication sharedApplication] scheduleLocalNotification:_ringNotification];
 
 }
